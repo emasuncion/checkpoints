@@ -1,31 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="inspire">
+    <v-app-bar
+      app
+      color="indigo"
+      dark
+    >
+      <v-flex md12>
+        <v-img
+          :src="require('../src/assets/cambridge-logo.png')"
+          contain
+          max-height="50"
+          max-width="50"
+        ></v-img>
+      </v-flex>
+      <router-link to="/" class="title"><v-toolbar-title>Cambridge Digital Checkpoints</v-toolbar-title></router-link>
+    </v-app-bar>
+
+    <v-content class="main">
+      <v-container
+        class="d-block align-contet-center fill-height"
+        fluid
+      >
+      <router-view></router-view>
+      </v-container>
+    </v-content>
+    <v-footer
+      color="indigo"
+      app
+    >
+      <span class="white--text">&copy; Eleirold Asuncion</span>
+    </v-footer>
+  </v-app>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'App',
+  created () {
+    this.getBooks()
+  },
+  methods: {
+    ...mapActions({
+      getBooks: 'GET_BOOKS'
+    })
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.title {
+  color: #fff !important;
 }
-#nav {
-  padding: 30px;
+a {
+  text-decoration: none;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.main {
+  padding: 0;
 }
 </style>

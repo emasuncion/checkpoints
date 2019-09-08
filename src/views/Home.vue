@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <book-card
+        v-for="(book, index) in books"
+        :key="index"
+        :name="book.name"
+        :id="book.id"
+      />
+    </v-row>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapGetters } from 'vuex'
+
+import BookCard from '@/components/BookCard.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    BookCard
+  },
+  computed: {
+    ...mapGetters({
+      books: 'BOOKS'
+    })
   }
 }
 </script>
