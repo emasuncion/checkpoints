@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels>
+  <v-expansion-panels class="pa-6">
     <v-expansion-panel
       v-for="(mainTopic,index) in 5"
       :key="index"

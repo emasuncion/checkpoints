@@ -1,5 +1,5 @@
 <template>
-  <div class="book pa-2">
+  <div class="book">
     <router-link :to="'/subjects/'+id">
       <v-col>
         <v-card

@@ -18,7 +18,7 @@
 
     <v-content class="main">
       <v-container
-        class="d-block align-contet-center fill-height"
+        class="d-block align-content-center fill-height"
         fluid
       >
       <router-view></router-view>
@@ -57,6 +57,6 @@ a {
   text-decoration: none;
 }
 .main {
-  padding: 0;
+  padding: 50px 0 !important;
 }
 </style>

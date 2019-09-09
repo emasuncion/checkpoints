@@ -1,14 +1,14 @@
 {
-  "name": "digital-checkpoints",
-  "short_name": "digital-checkpoints",
+  "name": "Digital Checkpoints",
+  "short_name": "Digital Checkpoints",
   "icons": [
     {
-      "src": "./img/icons/android-chrome-192x192.png",
+      "src": "./img/icons/cambridge-logo-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
-    },
+    },512
     {
-      "src": "./img/icons/android-chrome-512x512.png",
+      "src": "./img/icons/cambridge-logo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
