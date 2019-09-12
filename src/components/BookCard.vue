@@ -1,6 +1,6 @@
 <template>
   <div class="book">
-    <router-link :to="'/subjects/'+id">
+    <router-link :to="'/subjects/' + id">
       <v-col>
         <v-card
           max-width="170"

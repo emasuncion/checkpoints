@@ -21,6 +21,14 @@
         class="d-block align-content-center fill-height"
         fluid
       >
+      <loading
+        v-if="!books"
+        :active.sync="isLoading"
+        :can-cancel="false"
+        :is-full-page="fullPage"
+        :loader="loader"
+        :width="width">
+      </loading>
       <router-view></router-view>
       </v-container>
     </v-content>
@@ -28,18 +36,31 @@
       color="indigo"
       app
     >
-      <span class="white--text">&copy; Eleirold Asuncion</span>
+      <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import Loading from 'vue-loading-overlay'
 
 export default {
   name: 'App',
+  components: {
+    Loading
+  },
   created () {
     this.getBooks()
+  },
+  computed: {
+    ...mapGetters({
+      isLoading: 'LOADING',
+      books: 'BOOKS',
+      width: 'WIDTH',
+      fullPage: 'FULL_PAGE',
+      loader: 'LOADER'
+    })
   },
   methods: {
     ...mapActions({

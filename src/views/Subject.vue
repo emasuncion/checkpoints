@@ -1,37 +1,27 @@
 <template>
   <v-expansion-panels class="pa-6">
+    <loading
+      :active.sync="isLoading"
+      :can-cancel="false"
+      :is-full-page="fullPage"
+      :loader="loader"
+      :width="width">
+    </loading>
     <v-expansion-panel
-      v-for="(mainTopic,index) in 5"
+      v-for="(bookItem,index) in bookItems"
       :key="index"
     >
       <v-expansion-panel-header>
-        Main topic {{ mainTopic }}
+        {{ bookItem.Name }}
       </v-expansion-panel-header>
-      <v-expansion-panel-content>
-        <v-expansion-panels>
-          <v-expansion-panel
-            v-for="(subTopic,index) in 3"
-            :key="index"
-          >
-            <v-expansion-panel-header>
-              Sub-topic {{ subTopic }}
-            </v-expansion-panel-header>
-              <router-link :to="currentUrl + '/mcq'" append>
-                <v-expansion-panel-content>
-                  Multiple-choice questions
-                </v-expansion-panel-content>
-              </router-link>
-              <router-link :to="currentUrl + '/tf'" append>
-                <v-expansion-panel-content>
-                  True or false questions
-                </v-expansion-panel-content>
-              </router-link>
-              <router-link :to="currentUrl + '/fib'" append>
-                <v-expansion-panel-content>
-                  Fill in the blanks questions
-                </v-expansion-panel-content>
-              </router-link>
-          </v-expansion-panel>
+      <v-expansion-panel-content
+        v-if="bookItem.Children"
+      >
+        <v-expansion-panels
+          v-for="(child, index) in bookItem.Children"
+          :key="index"
+        >
+            <p>{{ child }}</p>
         </v-expansion-panels>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -39,12 +29,34 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import Loading from 'vue-loading-overlay'
+
 export default {
-  name: 'Subject',
+  components: {
+    Loading
+  },
   data: () => {
     return {
       currentUrl: window.location.pathname
     }
+  },
+  created () {
+    this.getBookItems(this.$route.params.id)
+  },
+  computed: {
+    ...mapGetters({
+      bookItems: 'BOOK_ITEMS',
+      width: 'WIDTH',
+      fullPage: 'FULL_PAGE',
+      isLoading: 'LOADING',
+      loader: 'LOADER'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getBookItems: 'GET_BOOK_ITEMS'
+    })
   }
 }
 </script>
