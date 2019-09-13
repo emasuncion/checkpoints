@@ -1,53 +1,53 @@
 <template>
-  <v-container>
-    <div class="mcq pa-2 d-sm-flex justify-center align-self-center">
-      <youtube class="youtube-video" video-id="UvhqlJX9b24" ref="youtube" />
-    </div>
-
-    <v-card
-      class="mx-auto mt-5"
-      max-width="344"
+  <v-carousel class="pa-4"
+    :show-arrows="showArrow"
+    hide-delimiters
+  >
+    <v-carousel-item
+      v-for="(question, i) in questions"
+      :key="i"
     >
-      <v-card-text>
-        <p class="display-1 text--primary">
-          {{ mcquestions.questions[0].question }}
-        </p>
-        <div class="text--primary">
+      <v-sheet
+        :color="color"
+        height="100%"
+        tile
+      >
+        <v-row
+          class="fill-height"
+          align="center"
+          justify="center"
+        >
+        <div class="pa-6 question-body">
+          <h3 class="mb-4">{{ question.question }}</h3>
           <ol>
-            <li>
-              {{ mcquestions.questions[0].incorrect_answers[0] }}
-            </li>
-            <li>
-              {{ mcquestions.questions[0].incorrect_answers[2] }}
-            </li>
-            <li>
-              {{ mcquestions.questions[0].correct_answer }}
-            </li>
-            <li>
-              {{ mcquestions.questions[0].incorrect_answers[1] }}
+            <li
+              v-for="(answer, index) in question.answers"
+              :key="index"
+            >
+              <p>{{ answer }}</p>
             </li>
           </ol>
         </div>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn
-          text
-          color="deep-purple accent-4"
-        >
-          Next
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-container>
+        </v-row>
+      </v-sheet>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { isMobile } from 'mobile-device-detect'
+
 export default {
-  name: 'MultipleChoice',
+  data () {
+    return {
+      color: 'yellow darken-2',
+      showArrow: !isMobile
+    }
+  },
   computed: {
     ...mapGetters({
-      mcquestions: 'MCQUESTIONS'
+      questions: 'MCQUESTIONS'
     })
   }
 }

@@ -1,0 +1,41 @@
+{
+  "0": {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the nickname of Northampton town's rugby union club?",
+    "correct_answer": "Saints",
+    "answers": [
+        "Harlequins",
+        "Saracens",
+        "Saints",
+        "Wasps"
+    ]
+  },
+  "1": {
+    "category": "Entertainment: Cartoon & Animations",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of Sid's dog in 'Toy Story'?",
+    "correct_answer": "Scud",
+    "answers": [
+        "Scud",
+        "Buster",
+        "Whiskers",
+        "Mr. Jones"
+    ]
+  },
+  "2": {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the best selling album of 2015?",
+    "correct_answer": "Adele, 25",
+    "answers": [
+        "Fetty Wap, Fetty Wap",
+        "Adele, 25",
+        "Taylor Swift, 1989",
+        "Justin Bieber, Purpose"
+    ]
+  }
+}

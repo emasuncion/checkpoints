@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import App from './App.vue'
 import Home from './views/Home.vue'
 import Subject from './views/Subject.vue'
+import TableContents from './components/TableContents.vue'
 import Mcq from './components/MultipleChoice.vue'
 
 Vue.use(Router)
@@ -23,13 +24,17 @@ export default new Router({
     },
     {
       path: '/subjects/:id',
-      name: 'Subject',
-      component: Subject
-    },
-    {
-      path: '/subjects/:id/mcq',
-      name: 'MCQ',
-      component: Mcq
+      component: Subject,
+      children: [
+        {
+          path: '',
+          component: TableContents
+        },
+        {
+          path: ':tocid',
+          component: Mcq
+        }
+      ]
     }
   ]
 })

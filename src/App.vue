@@ -52,6 +52,7 @@ export default {
   },
   created () {
     this.getBooks()
+    this.getQuestions()
   },
   computed: {
     ...mapGetters({
@@ -64,7 +65,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getBooks: 'GET_BOOKS'
+      getBooks: 'GET_BOOKS',
+      getQuestions: 'GET_QUESTIONS'
     })
   }
 }
