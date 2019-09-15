@@ -17,17 +17,42 @@
           align="center"
           justify="center"
         >
-        <div class="pa-6 question-body">
-          <h3 class="mb-4">{{ question.question }}</h3>
-          <ol>
-            <li
-              v-for="(answer, index) in question.answers"
-              :key="index"
-            >
-              <p>{{ answer }}</p>
-            </li>
-          </ol>
-        </div>
+          <div class="pa-6 question-body">
+            <h3 class="mb-4">{{ question.question }}</h3>
+            <ol>
+              <li
+                v-for="(answer, index) in question.answers"
+                :key="index"
+                @click.stop="checkAnswer(answer, question.correct_answer)"
+              >
+                <p>{{ answer }}</p>
+              </li>
+            </ol>
+          </div>
+
+          <v-dialog
+            v-model="dialog"
+            max-width="290"
+          >
+            <v-card :color="modalColor">
+              <v-card-title class="headline">
+                <v-icon class="pr-2" :color="modalColor" x-large>{{ icon }}</v-icon>
+                {{ result }}
+              </v-card-title>
+
+              <!-- <v-card-actions>
+                <div class="flex-grow-1"></div>
+                <v-btn
+                  :color="modalColor"
+                  text
+                  @click="dialog = false"
+                >
+                  Close
+                </v-btn>
+              </v-card-actions> -->
+            </v-card>
+          </v-dialog>
+
         </v-row>
       </v-sheet>
     </v-carousel-item>
@@ -42,13 +67,31 @@ export default {
   data () {
     return {
       color: 'yellow darken-2',
-      showArrow: !isMobile
+      showArrow: !isMobile,
+      dialog: false,
+      modalColor: null,
+      icon: null,
+      result: null
     }
   },
   computed: {
     ...mapGetters({
       questions: 'MCQUESTIONS'
     })
+  },
+  methods: {
+    checkAnswer (answer, correctAnswer) {
+      if (answer !== correctAnswer) {
+        this.modalColor = 'red-lighten-1'
+        this.icon = 'mdi-close-outline'
+        this.result = 'Incorrect!'
+      } else {
+        this.modalColor = 'light-green-lighten-1'
+        this.icon = 'mdi-check-outline'
+        this.result = 'Correct!'
+      }
+      this.dialog = true
+    }
   }
 }
 </script>
