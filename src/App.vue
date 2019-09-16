@@ -69,7 +69,7 @@ export default {
   },
   data () {
     return {
-      snackbar: isMobile
+      snackbar: isMobile && !navigator.standalone
     }
   },
   computed: {
