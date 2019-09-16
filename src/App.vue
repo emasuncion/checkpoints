@@ -30,6 +30,18 @@
         :width="width">
       </loading>
       <router-view></router-view>
+      <v-snackbar
+        v-model="snackbar"
+      >
+        Please tap the share icon and select "Add to Home Screen"
+        <v-btn
+          color="pink"
+          text
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
       </v-container>
     </v-content>
     <v-footer
@@ -44,6 +56,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Loading from 'vue-loading-overlay'
+import { isMobile } from 'mobile-device-detect'
 
 export default {
   name: 'App',
@@ -53,6 +66,11 @@ export default {
   created () {
     this.getBooks()
     this.getQuestions()
+  },
+  data () {
+    return {
+      snackbar: isMobile
+    }
   },
   computed: {
     ...mapGetters({

@@ -1,6 +1,6 @@
 {
-  "name": "Digital Checkpoints",
-  "short_name": "Digital Checkpoints",
+  "name": "Cambridge: Digital Checkpoints",
+  "short_name": "Checkpoints",
   "icons": [
     {
       "src": "./img/icons/cambridge-logo-192x192.png",
@@ -10,6 +10,31 @@
     {
       "src": "./img/icons/cambridge-logo-512x512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/cambridge-logo-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/cambridge-logo-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/cambridge-logo-167x167.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/cambridge-logo-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/icons/cambridge-logo-60x60.png",
+      "sizes": "60x60",
       "type": "image/png"
     }
   ],

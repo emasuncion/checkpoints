@@ -40,16 +40,17 @@
                 {{ result }}
               </v-card-title>
 
-              <!-- <v-card-actions>
+              <v-card-actions
+                v-show="!isMobile"
+              >
                 <div class="flex-grow-1"></div>
                 <v-btn
-                  :color="modalColor"
                   text
                   @click="dialog = false"
                 >
                   Close
                 </v-btn>
-              </v-card-actions> -->
+              </v-card-actions>
             </v-card>
           </v-dialog>
 

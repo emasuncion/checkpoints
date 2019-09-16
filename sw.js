@@ -18,9 +18,9 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-  new RegExp('https://some-fancy-api.com'),
+  new RegExp('https://youtube.com'),
   workbox.strategies.networkFirst({
-    cacheName: 'api'
+    cacheName: 'video'
   })
 )
 
@@ -38,7 +38,7 @@ workbox.routing.registerRoute(
 
 workbox.core.setCacheNameDetails({ prefix: 'd4' })
 //  Change this value every time before you build
-const LATEST_VERSION = 'v1.0'
+const LATEST_VERSION = 'v0.0.1'
 self.addEventListener('activate', (event) => {
   console.log(`%c ${LATEST_VERSION} `, 'background: #ddd; color: #0000ff')
   if (caches) {
