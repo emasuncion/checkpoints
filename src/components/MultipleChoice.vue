@@ -1,68 +1,76 @@
 <template>
-  <v-carousel class="pa-4"
-    :show-arrows="showArrow"
-    hide-delimiters
-  >
-    <v-carousel-item
-      v-for="(question, i) in questions"
-      :key="i"
+  <div>
+    <v-carousel class="pa-4"
+      :show-arrows="showArrow"
+      hide-delimiters
     >
-      <v-sheet
-        :color="color"
-        height="100%"
-        tile
+      <v-carousel-item
+        v-for="(question, i) in questions"
+        :key="i"
       >
-        <v-row
-          class="fill-height"
-          align="center"
-          justify="center"
+        <v-sheet
+          :color="color"
+          height="100%"
+          tile
         >
-          <div class="pa-6 question-body">
-            <h3 class="mb-4">{{ question.question }}</h3>
-            <ol>
-              <li
-                v-for="(answer, index) in question.answers"
-                :key="index"
-                @click.stop="checkAnswer(answer, question.correct_answer)"
-              >
-                <p>{{ answer }}</p>
-              </li>
-            </ol>
-          </div>
-
-          <v-dialog
-            v-model="dialog"
-            max-width="290"
+          <v-row
+            class="fill-height"
+            align="center"
+            justify="center"
           >
-            <v-card :color="modalColor">
-              <v-card-title class="headline">
-                <v-icon class="pr-2" :color="modalColor" x-large>{{ icon }}</v-icon>
-                {{ result }}
-              </v-card-title>
-
-              <v-card-actions
-                v-show="!isMobile"
-              >
-                <div class="flex-grow-1"></div>
-                <v-btn
-                  text
-                  @click="dialog = false"
+            <div class="pa-6 question-body">
+              <h3 class="mb-4">{{ question.question }}</h3>
+              <ol>
+                <li
+                  v-for="(answer, index) in question.answers"
+                  :key="index"
+                  @click.stop="checkAnswer(answer, question.correct_answer)"
                 >
-                  Close
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+                  <p>{{ answer }}</p>
+                </li>
+              </ol>
+            </div>
 
-        </v-row>
-      </v-sheet>
-    </v-carousel-item>
-  </v-carousel>
+            <v-dialog
+              v-model="dialog"
+              max-width="290"
+            >
+              <v-card :color="modalColor">
+                <v-card-title class="headline">
+                  <v-icon class="pr-2" :color="modalColor" x-large>{{ icon }}</v-icon>
+                  {{ result }}
+                </v-card-title>
+
+                <v-card-actions
+                  v-show="!isMobile"
+                >
+                  <div class="flex-grow-1"></div>
+                  <v-btn
+                    text
+                    @click="dialog = false"
+                  >
+                    Close
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
+          </v-row>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
+    <div class="container">
+      <v-row>
+        <youtube />
+      </v-row>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { isMobile } from 'mobile-device-detect'
+import Youtube from '@/components/Youtube'
 
 export default {
   data () {
@@ -74,6 +82,9 @@ export default {
       icon: null,
       result: null
     }
+  },
+  components: {
+    Youtube
   },
   computed: {
     ...mapGetters({
@@ -98,12 +109,9 @@ export default {
 </script>
 
 <style>
-  .youtube-video {
-    width: 100%;
-  }
-
   ol > li {
     list-style-type: upper-alpha;
     cursor: pointer;
   }
+
 </style>
