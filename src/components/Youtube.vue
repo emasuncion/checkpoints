@@ -1,8 +1,21 @@
 <template>
   <div class="video-responsive">
-    <youtube video-id="T6GqX-_QLFk" ref="youtube" class="youtube-style"></youtube>
+    <!-- <youtube video-id="T6GqX-_QLFk" ref="youtube" class="youtube-style"></youtube> -->
+    <video class="youtube-style" controls>
+      <source :src="video" type="video/mp4">
+    </video>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      video: '/video.mp4'
+    }
+  }
+}
+</script>
 
 <style>
   .video-responsive{

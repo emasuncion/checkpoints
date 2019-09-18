@@ -25,6 +25,7 @@
                   v-for="(answer, index) in question.answers"
                   :key="index"
                   @click.stop="checkAnswer(answer, question.correct_answer)"
+                  v-ripple="{ center: true }"
                 >
                   <p>{{ answer }}</p>
                 </li>
@@ -42,7 +43,7 @@
                 </v-card-title>
 
                 <v-card-actions
-                  v-show="!isMobile"
+                  v-if="!isMobile"
                 >
                   <div class="flex-grow-1"></div>
                   <v-btn
@@ -73,6 +74,7 @@ import { isMobile } from 'mobile-device-detect'
 import Youtube from '@/components/Youtube'
 
 export default {
+  props: ['isMobile'],
   data () {
     return {
       color: 'yellow darken-2',
