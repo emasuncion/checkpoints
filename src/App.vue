@@ -5,20 +5,25 @@
       color="indigo"
       dark
     >
-      <v-flex md12>
-        <v-img
-          :src="require('../src/assets/cambridge-logo.png')"
-          contain
-          max-height="50"
-          max-width="50"
-        ></v-img>
+      <v-flex class="header" md12>
+        <router-link to="/">
+          <v-img
+            id="cup-shield"
+            :src="require('../src/assets/cambridge-logo.png')"
+            contain
+            max-height="50"
+            max-width="50"
+          ></v-img>
+        </router-link>
+        <router-link to="/" class="title">
+          <v-toolbar-title id="app-title">Cambridge Digital Checkpoints</v-toolbar-title>
+        </router-link>
       </v-flex>
-      <router-link to="/" class="title"><v-toolbar-title>Cambridge Digital Checkpoints</v-toolbar-title></router-link>
     </v-app-bar>
 
     <v-content class="main">
       <v-container
-        class="d-block align-content-center fill-height"
+        class="align-content-center"
         fluid
       >
       <loading
@@ -48,7 +53,7 @@
       color="indigo"
       app
     >
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text">&copy; Global Education 2019</span>
     </v-footer>
   </v-app>
 </template>
@@ -92,13 +97,38 @@ export default {
 </script>
 
 <style>
-.title {
-  color: #fff !important;
-}
-a {
-  text-decoration: none;
-}
-.main {
-  padding: 50px 0 !important;
-}
+  .title {
+    color: #fff !important;
+  }
+  a {
+    text-decoration: none;
+  }
+  .main {
+    padding: 25px 0 !important;
+  }
+  .header {
+    flex:1;
+    display: flex;
+  }
+  #app-title {
+    padding: 10px;
+  }
+
+  @media (max-width: 350px) {
+    #app-title {
+      display: none;
+    }
+    .header {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 351px) and (max-width: 360px) {
+    #app-title {
+      font-size: 19px;
+      text-align: left;
+      padding: 10px 5px;
+    }
+  }
 </style>

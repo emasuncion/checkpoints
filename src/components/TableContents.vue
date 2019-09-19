@@ -1,33 +1,35 @@
 <template>
-  <v-expansion-panels class="pa-6">
-    <loading
-      :active.sync="isLoading"
-      :can-cancel="false"
-      :is-full-page="fullPage"
-      :loader="loader"
-      :width="width">
-    </loading>
-    <v-expansion-panel
-      v-for="(bookItem,index) in bookItems"
-      :key="index"
-    >
-      <v-expansion-panel-header>
-        {{ bookItem.Name }}
-      </v-expansion-panel-header>
-      <v-expansion-panel-content
-        v-if="bookItem.Children"
+  <div class="contents">
+    <v-expansion-panels class="pa-6 mt-4">
+      <loading
+        :active.sync="isLoading"
+        :can-cancel="false"
+        :is-full-page="fullPage"
+        :loader="loader"
+        :width="width">
+      </loading>
+      <v-expansion-panel
+        v-for="(bookItem,index) in bookItems"
+        :key="index"
       >
-        <v-expansion-panels
-          v-for="(child, index) in bookItem.Children"
-          :key="index"
+        <v-expansion-panel-header>
+          {{ bookItem.Name }}
+        </v-expansion-panel-header>
+        <v-expansion-panel-content
+          v-if="bookItem.Children"
         >
-            <router-link :to="`${currentUrl}/${child.ID}`">
-              <p>{{ child.Name }}</p>
-            </router-link>
-        </v-expansion-panels>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+          <v-expansion-panels
+            v-for="(child, index) in bookItem.Children"
+            :key="index"
+          >
+              <router-link :to="`${currentUrl}/${child.ID}`">
+                <p>{{ child.Name }}</p>
+              </router-link>
+          </v-expansion-panels>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </div>
 </template>
 
 <script>
@@ -66,5 +68,10 @@ export default {
 <style scoped>
   a {
     color: #000000 !important;
+  }
+
+  .contents {
+    max-width: 1100px;
+    margin: auto;
   }
 </style>

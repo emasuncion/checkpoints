@@ -1,22 +1,17 @@
 <template>
-  <div>
-    <v-carousel class="pa-4"
+  <div class="container">
+    <v-carousel
       :show-arrows="showArrow"
       hide-delimiters
+      height="auto"
     >
       <v-carousel-item
         v-for="(question, i) in questions"
         :key="i"
       >
-        <v-sheet
-          :color="color"
-          height="100%"
-          tile
-        >
+
           <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
+          class="mt-4"
           >
             <div class="pa-6 question-body">
               <h3 class="mb-4">{{ question.question }}</h3>
@@ -24,7 +19,7 @@
                 <li
                   v-for="(answer, index) in question.answers"
                   :key="index"
-                  @click.stop="checkAnswer(answer, question.correct_answer)"
+                  @click="checkAnswer(answer, question.correct_answer)"
                   v-ripple="{ center: true }"
                 >
                   <p>{{ answer }}</p>
@@ -36,14 +31,16 @@
               v-model="dialog"
               max-width="290"
             >
-              <v-card :color="modalColor">
+              <v-card>
                 <v-card-title class="headline">
-                  <v-icon class="pr-2" :color="modalColor" x-large>{{ icon }}</v-icon>
-                  {{ result }}
+                  <div id="icon">
+                    <v-icon class="pr-2 icon-size" :color="modalColor">{{ icon }}</v-icon>
+                  </div>
+                  <div id="result">{{ result }}</div>
                 </v-card-title>
 
                 <v-card-actions
-                  v-if="!isMobile"
+                  v-if=showArrow
                 >
                   <div class="flex-grow-1"></div>
                   <v-btn
@@ -57,10 +54,9 @@
             </v-dialog>
 
           </v-row>
-        </v-sheet>
       </v-carousel-item>
     </v-carousel>
-    <div class="container">
+    <div>
       <v-row>
         <youtube />
       </v-row>
@@ -95,12 +91,13 @@ export default {
   },
   methods: {
     checkAnswer (answer, correctAnswer) {
+      console.log(isMobile)
       if (answer !== correctAnswer) {
-        this.modalColor = 'red-lighten-1'
+        this.modalColor = 'red'
         this.icon = 'mdi-close-outline'
         this.result = 'Incorrect!'
       } else {
-        this.modalColor = 'light-green-lighten-1'
+        this.modalColor = 'green'
         this.icon = 'mdi-check-outline'
         this.result = 'Correct!'
       }
@@ -116,4 +113,23 @@ export default {
     cursor: pointer;
   }
 
+  .question-body {
+    margin: auto;
+  }
+  #icon {
+    width: 100%;
+    text-align: center;
+  }
+  #result {
+    text-align: center;
+    width: 100%;
+    font-size: 2.5rem;
+  }
+  .icon-size {
+    font-size: 5rem !important;
+    border: 5px solid;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 100%;
+  }
 </style>
